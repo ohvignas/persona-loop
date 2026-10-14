@@ -45,8 +45,8 @@ ClipRadar (a SaaS that turns Twitch lives into shorts) went through this loop.
 
 | | Before | After |
 |---|---|---|
-| Persona grade ("Léo", freelance clipper) | **3/10**, gave up after 10 min, crash screen with stack trace | **8/10** (reported by the project owner after the redesign) |
-| Would they pay 19 EUR/month? | No | — |
+| Persona grade ("Léo", freelance clipper) | **3/10**, gave up after 10 min, crash screen with stack trace | **8/10** after the redesign (source: ClipRadar `docs/ux-refonte/03-test-utilisateur-leo-v2.md`, commit 7446a39) |
+| Would they pay 19/month? | No | Yes, probably |
 
 | Before: crash screen | After: moments, desktop | After: short, mobile |
 |---|---|---|
@@ -65,7 +65,7 @@ claude mcp add playwright npx @playwright/mcp@latest
 Then, inside Claude Code:
 
 ```text
-/plugin marketplace add <github-user>/persona-loop
+/plugin marketplace add ohvignas/persona-loop
 /plugin install persona-loop@persona-loop-marketplace
 ```
 
@@ -117,7 +117,7 @@ docs/persona-loop/2026-10-14/
     screenshots/
 ```
 
-Excerpt from a real run on ClipRadar (iteration 1, 2026-10-14):
+Real run of this plugin's method on ClipRadar (iteration 1, 2026-10-14), persona Kenzo, Twitch GTA RP streamer: **average 7.3/10, weakest dimension 6/10**, "would I pay?" maybe. Report files: `docs/persona-loop/2026-10-14/` in the ClipRadar repo (`persona.md`, `journey.md`, `iteration-1/test-report.md`, `critique.md`, `scores.md`, `iteration-report.md`). Excerpt:
 
 | # | Dimension | Score | Evidence |
 |---|---|---|---|

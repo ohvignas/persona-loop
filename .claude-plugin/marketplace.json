@@ -1,6 +1,6 @@
 {
   "name": "persona-loop-marketplace",
-  "owner": { "name": "TO_CONFIRM_BY_OWNER" },
+  "owner": { "name": "ILLITH SAS" },
   "metadata": { "description": "Local marketplace for the persona-loop plugin." },
   "plugins": [
     {

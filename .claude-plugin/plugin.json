@@ -2,7 +2,9 @@
   "name": "persona-loop",
   "version": "0.1.0",
   "description": "Persona-driven UX loop: define a realistic persona, map the journey, have it play your web app for real in an isolated browser, critique, score /10 per dimension with evidence, plan fixes, and iterate to target.",
-  "author": { "name": "TO_CONFIRM_BY_OWNER" },
+  "author": { "name": "ILLITH SAS" },
   "license": "MIT",
+  "homepage": "https://github.com/ohvignas/persona-loop",
+  "repository": "https://github.com/ohvignas/persona-loop",
   "keywords": ["ux", "persona", "usability-testing", "playwright", "design-critique", "cro", "accessibility"]
 }
