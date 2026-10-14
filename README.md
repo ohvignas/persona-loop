@@ -1,62 +1,46 @@
 <div align="center">
 
-# persona-loop
+<img src="docs/images/banner.svg" alt="persona-loop: a real user tests your app, a critic scores it, the loop fixes it until 10/10" width="100%">
 
-**Let a realistic customer try your web app for real, tell you what hurts, and help you fix it until it scores 10/10.**
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)](LICENSE)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-D97757?style=for-the-badge)](https://docs.claude.com/en/docs/claude-code/plugins)
+[![Browser: Playwright](https://img.shields.io/badge/browser-Playwright-2563eb?style=for-the-badge)](https://github.com/microsoft/playwright-mcp)
+[![Score /10](https://img.shields.io/badge/score-%2F10%20with%20proof-a855f7?style=for-the-badge)](#what-you-get)
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-D97757.svg)](https://docs.claude.com/en/docs/claude-code/plugins)
-[![Validate](https://img.shields.io/badge/CI-validate-blue.svg)](.github/workflows/validate.yml)
-
-English · [Français](README.fr.md)
+**English** · [Français](README.fr.md)
 
 </div>
 
----
+## In 30 seconds
 
-## Why
+- persona-loop invents a believable customer for your web app and makes them use it in a real browser.
+- A strict critic reviews what happened and grades 10 dimensions out of 10, with a screenshot or a request as proof.
+- It plans the fixes, applies them if you agree, and tests again until the target or the budget.
 
-Tests tell you the code runs. They do not tell you that a real person gives up after 10 minutes.
-persona-loop is a [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin that:
+<img src="docs/images/loop.svg" alt="The loop: Persona, Journey, Real test, Critique, Score /10, Fixes, then test again" width="100%">
 
-1. invents a **realistic persona** from your app (who they are, what they want, how patient they are),
-2. maps the **journey** they need,
-3. makes them **use your app for real** in a browser,
-4. asks a **demanding UX critic** to review what happened,
-5. **scores** 10 dimensions out of 10, every grade backed by proof,
-6. plans the **fixes**, then tests again.
+## A real story: Léo and ClipRadar
 
-## The loop
+ClipRadar turns Twitch lives into shorts. It is an internal project, not public.
+**Léo, 24, freelance clipper, zero patience**, tried it twice.
 
-```mermaid
-flowchart LR
-    A[Persona] --> B[Journey]
-    B --> C[Real test<br/>in a browser]
-    C --> D[UX critique]
-    D --> E[Score /10]
-    E -->|below target| F[Fix plan<br/>and fixes]
-    F --> C
-    E -->|target reached<br/>or budget spent| G[Final report]
-```
+<img src="docs/images/scores.svg" alt="Léo's grade: 3/10 in v1, 8/10 in v2" width="100%">
 
-## Real result: ClipRadar
+| v1: Léo quits at 10 min | v2: short ready in under 5 min |
+|:---:|:---:|
+| <img src="docs/images/before-crash-stacktrace.png" width="260" alt="v1: crash screen with a raw stack trace"> | <img src="docs/images/after-short-mobile.png" width="260" alt="v2: the short is ready on mobile"> |
+| Logged out on every reload. Crash screen with a stack trace. Confirmation email that never came. **3/10**, would not pay. | No crash, no logout. Moment found in ~15 s, short made in ~45 s. **8/10**, would probably pay. |
 
-ClipRadar (a SaaS that turns Twitch lives into shorts) went through this loop.
+persona-loop **found** 10 frustrations with timestamps and screenshots, **ranked** them, the fixes went in, and the same persona **tested again**.
+Full story: [`examples/clipradar-2026-10-14/STORY.md`](examples/clipradar-2026-10-14/STORY.md).
 
-| | Before | After |
-|---|---|---|
-| Persona grade ("Léo", freelance clipper) | **3/10**, gave up after 10 min, crash screen with stack trace | **8/10** after the redesign (source: ClipRadar internal user-test report, not public) |
-| Would they pay 19/month? | No | Yes, probably |
+## The 6 agents
 
-| Before: crash screen | After: moments, desktop | After: short, mobile |
-|---|---|---|
-| <img src="docs/images/before-crash-stacktrace.png" width="260" alt="Before: technical crash screen"> | <img src="docs/images/after-moments-desktop.png" width="260" alt="After: moments page"> | <img src="docs/images/after-short-mobile.png" width="140" alt="After: short detail on mobile"> |
-
-Only these two numbers come from the real project. persona-loop never invents numbers.
+<img src="docs/images/agents.svg" alt="The 6 agents: persona-architect, journey-mapper, persona-tester, ux-critic, scorer, fixer-planner" width="100%">
 
 ## Install in 2 minutes
 
-You need [Claude Code](https://docs.claude.com/en/docs/claude-code) and the Playwright MCP server (the browser the persona uses):
+You need [Claude Code](https://docs.claude.com/en/docs/claude-code). Add the browser the persona uses:
 
 ```bash
 claude mcp add playwright npx @playwright/mcp@latest
@@ -69,27 +53,16 @@ Then, inside Claude Code:
 /plugin install persona-loop@persona-loop-marketplace
 ```
 
-Trying a local copy instead:
+Start your app, open Claude Code in its folder, and run:
 
 ```text
-/plugin marketplace add /path/to/persona-loop
-/plugin install persona-loop@persona-loop-marketplace
+/persona-loop:persona-loop http://localhost:3000 --max-iterations 3
 ```
 
-or start Claude Code with `claude --plugin-dir /path/to/persona-loop`.
+It asks which test account it may use and whether it may change code. Want a diagnosis only? Add `--no-fix`.
 
-## Your first run
-
-1. Start your app (for example on `http://localhost:3000`).
-2. Open Claude Code **in your app's folder**.
-3. Type:
-   ```text
-   /persona-loop:persona-loop http://localhost:3000 --goal "create an account and get my first result" --max-iterations 3
-   ```
-4. Answer the questions it asks (which test account it may use, whether it may fix code).
-5. Read the results in `docs/persona-loop/<date>/`.
-
-Just want a diagnosis, no code change? Add `--no-fix`.
+<details>
+<summary>All commands</summary>
 
 | Command | What it does |
 |---|---|
@@ -101,58 +74,50 @@ Just want a diagnosis, no code change? Add `--no-fix`.
 | `/persona-loop:score` | Score the latest iteration |
 | `/persona-loop:report` | Summary of all iterations |
 
-Plugin commands are namespaced: the main command is `/persona-loop:persona-loop` (some Claude Code versions also accept `/persona-loop` when it is unambiguous).
+Local copy: `/plugin marketplace add /path/to/persona-loop`, or `claude --plugin-dir /path/to/persona-loop`.
+</details>
 
 ## What you get
 
+One folder per run, in `docs/persona-loop/<date>/`:
+
 ```text
-docs/persona-loop/2026-10-14/
-  persona.md         who tests, what they want, their patience
-  journey.md         steps, expected signals, criteria J-1..J-n
-  iteration-1/
-    test-report.md   timestamped timeline, frustrations, misunderstood words, grade, "would I pay?"
-    critique.md      findings UX-1..n with evidence
-    scores.md        10 dimensions /10, evidence for each
-    iteration-report.md  fix plan FIX-1..n, owner decisions
-    screenshots/
+persona.md            who tests, what they want, how patient they are
+journey.md            the steps and what "success" looks like
+iteration-1/
+  test-report.md      timeline, frustrations, "would I pay?"
+  critique.md         findings UX-1..n, each with proof
+  scores.md           10 dimensions /10
+  iteration-report.md fix plan FIX-1..n
+  screenshots/
 ```
 
-Real run of this plugin's method on ClipRadar (iteration 1, 2026-10-14), persona Kenzo, Twitch GTA RP streamer: **average 7.3/10, weakest dimension 6/10**, "would I pay?" maybe. Full report (in French, test account redacted, 3 of the screenshots kept): [`examples/clipradar-2026-10-14/`](examples/clipradar-2026-10-14/). Excerpt:
+A real `scores.md` excerpt (ClipRadar, persona Kenzo, iteration 1, [full report](examples/clipradar-2026-10-14/)):
 
-| # | Dimension | Score | Evidence |
-|---|---|---|---|
-| 2 | Onboarding | 6 | submitting before the page is ready silently reloads it (`GET /sign-up?`, no auth request) |
-| 7 | Mobile | 6 | at 375 px the cookie banner covers the sign-up button and swallows the tap |
-| 9 | Stability | 8 | 0 logouts over 8 reloads |
+| Dimension | Score | Proof |
+|---|:---:|---|
+| Onboarding | 🟠 6 | submitting before the page is ready reloads it, no auth request sent |
+| Mobile | 🟠 6 | at 375 px the cookie banner covers the sign-up button |
+| Stability | 🟢 8 | 0 logouts over 8 reloads |
 
-## The 10 dimensions
+The 10 dimensions: promise clarity, onboarding, main journey, visual UI, UX feedback, accessibility, mobile, copywriting, stability, trust. The overall score is the weakest one.
 
-Promise clarity · Onboarding / time to value · Main journey · Visual UI · UX / feedback · Accessibility · Mobile · Copywriting / i18n · Stability / errors · Trust / legal.
-10 = nothing left to fix, 8 = minor issues only, 6 = a major issue, 4 = a blocker. Overall score = the weakest dimension.
+## FAQ
 
-## Beginner FAQ
+**What is a persona?** A precise portrait of one customer: name, job, goal, and how many minutes they give your app before leaving.
 
-**What is a persona?** A precise, believable portrait of one customer: name, job, what they want to get done, how much time they will give your app before leaving. Testing "as Kenzo, a streamer with 5 minutes" finds problems that "as a developer" misses.
+**Does it change my code?** Only if you allow it. It shows the plan first, asks before anything destructive, and never edits your existing tests.
 
-**How much does it cost in tokens?** It depends on your app and the number of iterations. One iteration runs 4 to 5 agents and a real browser session, so it is much more than a chat message. Start with `--max-iterations 1 --no-fix` to see the cost on your own app. We do not publish an estimate we have not measured.
+**How much does it cost?** One iteration runs 4 to 5 agents and a browser session. Start with `--max-iterations 1 --no-fix` to measure it on your app.
 
-**Does it modify my code?** Only if you let it. Without `--no-fix`, it shows the fix plan first, asks before anything destructive or external, never edits your existing tests, and follows your project rules (CLAUDE.md).
+**Will it reach 10/10?** Not always. It stops at the budget or reports `BLOCKED` with what fails. It never claims a score it cannot prove.
 
-**Can it test any website?** Any web app reachable from your machine. For a site you do not own, it asks first. It never pays, sends real messages, or uses real passwords.
-
-**Will it really reach 10/10?** Sometimes not. It stops at the iteration budget, or says `BLOCKED` with what fails. It will never claim a score it cannot prove.
-
-## Limits
-
-- Needs the Playwright MCP server; web only (no native mobile apps yet).
-- Each tester needs its own browser context. If your browser is shared with another agent, results are wrong; the tester stops instead.
-- Lighthouse scores appear only if the Lighthouse CLI is available.
-- A persona is a model, not a real user. Use it before, not instead of, real interviews.
+**Limits?** Web apps only, Playwright MCP required. A persona is a model of a user: use it before real interviews, not instead of them.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Validate with `node scripts/validate.mjs .` and `claude plugin validate .`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Check your changes with `node scripts/validate.mjs .` and `claude plugin validate .`.
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) · ILLITH SAS

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="persona-loop: Un vrai utilisateur teste votre app. Un critique la note. La boucle corrige jusqu’à 10/10.">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E1047"/><stop offset="1" stop-color="#0B1B3A"/></linearGradient>
+<linearGradient id="t" x1="0" x2="1"><stop offset="0" stop-color="#F472B6"/><stop offset=".5" stop-color="#FB923C"/><stop offset="1" stop-color="#FACC15"/></linearGradient></defs>
+<rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+<circle cx="1010" cy="180" r="120" fill="none" stroke="#7C3AED" stroke-width="22" opacity=".35"/>
+<path d="M1010 60 A120 120 0 1 1 892 160" fill="none" stroke="url(#t)" stroke-width="22" stroke-linecap="round"/>
+<path d="M872 140 l20 22 l24 -16" fill="none" stroke="#FACC15" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1010" y="200" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="64" font-weight="800" fill="#FFFFFF">10<tspan font-size="30" fill="#C4B5FD">/10</tspan></text>
+<text x="64" y="120" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="76" font-weight="800" fill="url(#t)">persona-loop</text>
+<text x="66" y="160" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="20" font-weight="600" fill="#C4B5FD" letter-spacing="2">PLUGIN CLAUDE CODE · OPEN SOURCE</text>
+<text x="66" y="222" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#FFFFFF">Un vrai utilisateur teste votre app.</text>
+<text x="66" y="262" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#FFFFFF">Un critique la note.</text>
+<text x="66" y="302" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="600" fill="#FDE68A">La boucle corrige jusqu’à 10/10.</text>
+</svg>
