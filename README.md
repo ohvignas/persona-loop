@@ -45,7 +45,7 @@ ClipRadar (a SaaS that turns Twitch lives into shorts) went through this loop.
 
 | | Before | After |
 |---|---|---|
-| Persona grade ("Léo", freelance clipper) | **3/10**, gave up after 10 min, crash screen with stack trace | **8/10** after the redesign (source: ClipRadar `docs/ux-refonte/03-test-utilisateur-leo-v2.md`, commit 7446a39) |
+| Persona grade ("Léo", freelance clipper) | **3/10**, gave up after 10 min, crash screen with stack trace | **8/10** after the redesign (source: ClipRadar internal user-test report, not public) |
 | Would they pay 19/month? | No | Yes, probably |
 
 | Before: crash screen | After: moments, desktop | After: short, mobile |
@@ -84,7 +84,7 @@ or start Claude Code with `claude --plugin-dir /path/to/persona-loop`.
 2. Open Claude Code **in your app's folder**.
 3. Type:
    ```text
-   /persona-loop http://localhost:3000 --goal "create an account and get my first result" --max-iterations 3
+   /persona-loop:persona-loop http://localhost:3000 --goal "create an account and get my first result" --max-iterations 3
    ```
 4. Answer the questions it asks (which test account it may use, whether it may fix code).
 5. Read the results in `docs/persona-loop/<date>/`.
@@ -93,7 +93,7 @@ Just want a diagnosis, no code change? Add `--no-fix`.
 
 | Command | What it does |
 |---|---|
-| `/persona-loop <url> [--persona] [--goal] [--max-iterations N] [--target 10] [--no-fix]` | The whole loop |
+| `/persona-loop:persona-loop <url> [--persona] [--goal] [--max-iterations N] [--target 10] [--no-fix]` | The whole loop |
 | `/persona-loop:persona <url>` | Build the persona only |
 | `/persona-loop:journey <url>` | Map the journey |
 | `/persona-loop:test <url>` | One real test by the persona |
@@ -101,7 +101,7 @@ Just want a diagnosis, no code change? Add `--no-fix`.
 | `/persona-loop:score` | Score the latest iteration |
 | `/persona-loop:report` | Summary of all iterations |
 
-Depending on your Claude Code version, the main command may show as `/persona-loop:persona-loop`.
+Plugin commands are namespaced: the main command is `/persona-loop:persona-loop` (some Claude Code versions also accept `/persona-loop` when it is unambiguous).
 
 ## What you get
 
@@ -117,7 +117,7 @@ docs/persona-loop/2026-10-14/
     screenshots/
 ```
 
-Real run of this plugin's method on ClipRadar (iteration 1, 2026-10-14), persona Kenzo, Twitch GTA RP streamer: **average 7.3/10, weakest dimension 6/10**, "would I pay?" maybe. Report files: `docs/persona-loop/2026-10-14/` in the ClipRadar repo (`persona.md`, `journey.md`, `iteration-1/test-report.md`, `critique.md`, `scores.md`, `iteration-report.md`). Excerpt:
+Real run of this plugin's method on ClipRadar (iteration 1, 2026-10-14), persona Kenzo, Twitch GTA RP streamer: **average 7.3/10, weakest dimension 6/10**, "would I pay?" maybe. Full report (in French, test account redacted, 3 of the screenshots kept): [`examples/clipradar-2026-10-14/`](examples/clipradar-2026-10-14/). Excerpt:
 
 | # | Dimension | Score | Evidence |
 |---|---|---|---|

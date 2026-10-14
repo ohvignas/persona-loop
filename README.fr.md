@@ -45,7 +45,7 @@ ClipRadar (un SaaS qui transforme des lives Twitch en shorts) est passé par cet
 
 | | Avant | Après |
 |---|---|---|
-| Note du persona (« Léo », clippeur freelance) | **3/10**, abandon à 10 min, écran de crash avec stack trace | **8/10** après la refonte (source : ClipRadar `docs/ux-refonte/03-test-utilisateur-leo-v2.md`, commit 7446a39) |
+| Note du persona (« Léo », clippeur freelance) | **3/10**, abandon à 10 min, écran de crash avec stack trace | **8/10** après la refonte (source : rapport de test utilisateur interne de ClipRadar, non public) |
 | Paierait-il 19/mois ? | Non | Oui, probablement |
 
 | Avant : écran de crash | Après : moments, bureau | Après : short, mobile |
@@ -84,7 +84,7 @@ ou lancez `claude --plugin-dir /chemin/vers/persona-loop`.
 2. Ouvrez Claude Code **dans le dossier de votre app**.
 3. Tapez :
    ```text
-   /persona-loop http://localhost:3000 --goal "créer un compte et obtenir mon premier résultat" --max-iterations 3
+   /persona-loop:persona-loop http://localhost:3000 --goal "créer un compte et obtenir mon premier résultat" --max-iterations 3
    ```
 4. Répondez à ses questions (quel compte de test utiliser, a-t-il le droit de corriger le code).
 5. Lisez les résultats dans `docs/persona-loop/<date>/`.
@@ -93,7 +93,7 @@ Vous voulez seulement un diagnostic, sans toucher au code ? Ajoutez `--no-fix`.
 
 | Commande | Rôle |
 |---|---|
-| `/persona-loop <url> [--persona] [--goal] [--max-iterations N] [--target 10] [--no-fix]` | Toute la boucle |
+| `/persona-loop:persona-loop <url> [--persona] [--goal] [--max-iterations N] [--target 10] [--no-fix]` | Toute la boucle |
 | `/persona-loop:persona <url>` | Le persona seul |
 | `/persona-loop:journey <url>` | Le parcours |
 | `/persona-loop:test <url>` | Un test réel par le persona |
@@ -101,7 +101,7 @@ Vous voulez seulement un diagnostic, sans toucher au code ? Ajoutez `--no-fix`.
 | `/persona-loop:score` | Noter la dernière itération |
 | `/persona-loop:report` | Synthèse de toutes les itérations |
 
-Selon votre version de Claude Code, la commande principale peut s'afficher `/persona-loop:persona-loop`.
+Les commandes de plugin sont préfixées : la commande principale est `/persona-loop:persona-loop` (certaines versions de Claude Code acceptent aussi `/persona-loop` sans ambiguïté).
 
 ## Ce que vous obtenez
 
@@ -117,7 +117,7 @@ docs/persona-loop/2026-10-14/
     screenshots/
 ```
 
-Vrai passage de la méthode de ce plugin sur ClipRadar (itération 1, 14/10/2026), persona Kenzo, streamer Twitch GTA RP : **moyenne 7,3/10, dimension la plus faible 6/10**, « paierait-il ? » peut-être. Fichiers du rapport : `docs/persona-loop/2026-10-14/` dans le dépôt ClipRadar (`persona.md`, `journey.md`, `iteration-1/test-report.md`, `critique.md`, `scores.md`, `iteration-report.md`). Extrait :
+Vrai passage de la méthode de ce plugin sur ClipRadar (itération 1, 14/10/2026), persona Kenzo, streamer Twitch GTA RP : **moyenne 7,3/10, dimension la plus faible 6/10**, « paierait-il ? » peut-être. Rapport complet (compte de test masqué, 3 captures conservées) : [`examples/clipradar-2026-10-14/`](examples/clipradar-2026-10-14/). Extrait :
 
 | # | Dimension | Note | Preuve |
 |---|---|---|---|
