@@ -1,0 +1,8 @@
+{
+  "name": "persona-loop",
+  "version": "0.1.0",
+  "description": "Persona-driven UX loop: define a realistic persona, map the journey, have it play your web app for real in an isolated browser, critique, score /10 per dimension with evidence, plan fixes, and iterate to target.",
+  "author": { "name": "TO_CONFIRM_BY_OWNER" },
+  "license": "MIT",
+  "keywords": ["ux", "persona", "usability-testing", "playwright", "design-critique", "cro", "accessibility"]
+}
